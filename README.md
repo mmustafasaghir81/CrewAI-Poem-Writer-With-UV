@@ -1,153 +1,56 @@
-# 📚 CrewAI-Poem-Writer-With-UV
+# {{crew_name}} Crew
 
-# 🔹 Step 1: Create a Project Folder
-First, create a new folder where you will store your project:
+Welcome to the {{crew_name}} Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+
+## Installation
+
+Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+
+First, if you haven't already, install uv:
 
 ```bash
-mkdir CrewAI-Poem-Writer
-
+pip install uv
 ```
-# Navigate into the folder:
+
+Next, navigate to your project directory and install the dependencies:
+
+(Optional) Lock the dependencies and install them by using the CLI command:
 ```bash
-cd CrewAI-Poem-Writer
-
+crewai install
 ```
-# 🔹 Step 2: Open the Project in VS Code
-Now, open VS Code in this folder:
+
+### Customizing
+
+**Add your `OPENAI_API_KEY` into the `.env` file**
+
+- Modify `src/project4/config/agents.yaml` to define your agents
+- Modify `src/project4/config/tasks.yaml` to define your tasks
+- Modify `src/project4/crew.py` to add your own logic, tools and specific args
+- Modify `src/project4/main.py` to add custom inputs for your agents and tasks
+
+## Running the Project
+
+To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+
 ```bash
-code .
-
+crewai run
 ```
-# 🔹 Step 3: Create a .env File with mentioned gemini model 
-Inside your CrewAI-Poem-Writer folder, create a .env file:
-```bash
-GEMINI_API_KEY=your_gemini_api_key
-MODEL =  gemini/gemini-1.5-flash
 
-```
-# 🔹 Step 4: Create a Python Virtual Environment
-Create a virtual environment to manage dependencies:
-```bash
-python -m venv venv
+This command initializes the project4 Crew, assembling the agents and assigning them tasks as defined in your configuration.
 
-```
-# 🔹 Windows (cmd/PowerShell):
-```bash
-venv\Scripts\activate
+This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
 
-```
-# 🔹 Step 5: Create the Main Python Script in src/CrewAI-Poem-Writer
-Go Inside src Folder
-Now, create the main.py file inside this folder:
+## Understanding Your Crew
 
+The project4 Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
 
-# 🔹 Step 6: Open main.py in VS Code and add the following code:
-```bash
-#!/usr/bin/env python
-from random import randint
+## Support
 
-from pydantic import BaseModel
+For support, questions, or feedback regarding the {{crew_name}} Crew or crewAI.
 
-from crewai.flow import Flow, listen, start
+- Visit our [documentation](https://docs.crewai.com)
+- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
+- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
+- [Chat with our docs](https://chatg.pt/DWjSBZn)
 
-from project4.crews.poem_crew.poem_crew import PoemCrew
-
-
-class PoemState(BaseModel):
-    sentence_count: int = 1
-    poem: str = ""
-
-
-class PoemFlow(Flow[PoemState]):
-
-    @start()
-    def generate_sentence_count(self):
-        print("Generating sentence count")
-        self.state.sentence_count = randint(1, 5)
-
-    @listen(generate_sentence_count)
-    def generate_poem(self):
-        print("Generating poem")
-        result = (
-            PoemCrew()
-            .crew()
-            .kickoff(inputs={"sentence_count": self.state.sentence_count})
-        )
-
-        print("Poem generated", result.raw)
-        self.state.poem = result.raw
-
-    @listen(generate_poem)
-    def save_poem(self):
-        print("Saving poem")
-        with open("poem.txt", "w") as f:
-            f.write(self.state.poem)
-
-
-def kickoff():
-    poem_flow = PoemFlow()
-    poem_flow.kickoff()
-
-
-def plot():
-    poem_flow = PoemFlow()
-    poem_flow.plot()
-
-
-if __name__ == "__main__":
-    kickoff()
-
-```
-# 🔹 Step 7: Open pyproject.toml
-If you don’t already have this file, create it in your CrewAI-Poem-Writer folder:
-Then open it in VS Code and add the following:
-```bash
-[project]
-name = "project4"
-version = "0.1.0"
-description = "project4 using crewAI"
-authors = [{ name = "Your Name", email = "you@example.com" }]
-requires-python = ">=3.10,<3.13"
-dependencies = [
-    "crewai[tools]>=0.100.1,<1.0.0",
-]
-
-[project.scripts]
-kickoff = "CrewAI-Poem-Writer.main:kickoff"
-plot = "CrewAI-Poem-Writer.main:plot"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[tool.crewai]
-type = "flow"
-
-```
-# 🔹 Step 8 Last Step: Run the Project in Terminal (Using Mouse)
-1️⃣ Open VS Code and make sure your project is visible in the Explorer panel.
-
-2️⃣ Open the Terminal (Using Mouse):
-
-Click on "Terminal" in the top menu bar.
-Select "New Terminal".
-A terminal window will open at the bottom of VS Code.
-
-``
-# 🔹 Final Step: Run UV (Uvicorn) to Start the API
-```bash
-uv run kickoff
-
-```
-# ✅ Result 
-Poem generated CrewAI, a poet's best friend, so keen,
-Spitting out verses, bright and pristine.
-No writer's block, no frantic, late-night chase,
-Just perfect poems, at a rapid pace!
-Saving poem
-
-
-
-
-
-
+Let's create wonders together with the power and simplicity of crewAI.
