@@ -1,7 +1,7 @@
-[project]
-name = "project4"
+[CrewAI-Poem-Writer]
+name = "CrewAI-Poem-Writer"
 version = "0.1.0"
-description = "project4 using crewAI"
+description = "CrewAI-Poem-Writer using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.13"
 dependencies = [
@@ -9,8 +9,8 @@ dependencies = [
 ]
 
 [project.scripts]
-kickoff = "project4.main:kickoff"
-plot = "project4.main:plot"
+kickoff = "CrewAI-Poem-Writer.main:kickoff"
+plot = "CrewAI-Poem-Writer.main:plot"
 
 [build-system]
 requires = ["hatchling"]
