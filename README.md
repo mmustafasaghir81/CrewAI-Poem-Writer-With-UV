@@ -36,12 +36,12 @@ python -m venv venv
 venv\Scripts\activate
 
 ```
-# 🔹 Step 5: Create the Main Python Script
-Inside the CrewAI-Poem-Writer folder, create a new Python file:
-```bash
-touch main.py
-```
-# Open main.py in VS Code and add the following code:
+# 🔹 Step 5: Create the Main Python Script in src/CrewAI-Poem-Writer
+Go Inside src Folder
+Now, create the main.py file inside this folder:
+
+
+# 🔹 Step 6: Open main.py in VS Code and add the following code:
 ```bash
 #!/usr/bin/env python
 from random import randint
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     kickoff()
 
 ```
-# 🔹 Step 6: Open pyproject.toml
+# 🔹 Step 7: Open pyproject.toml
 If you don’t already have this file, create it in your CrewAI-Poem-Writer folder:
 Then open it in VS Code and add the following:
 ```bash
@@ -122,5 +122,32 @@ build-backend = "hatchling.build"
 
 [tool.crewai]
 type = "flow"
+
+```
+# 🔹 Step 8 Last Step: Run the Project in Terminal (Using Mouse)
+1️⃣ Open VS Code and make sure your project is visible in the Explorer panel.
+
+2️⃣ Open the Terminal (Using Mouse):
+
+Click on "Terminal" in the top menu bar.
+Select "New Terminal".
+A terminal window will open at the bottom of VS Code.
+
+``
+# 🔹 Final Step: Run UV (Uvicorn) to Start the API
+```bash
+uv run kickoff
+
+```
+# ✅ Result 
+Poem generated CrewAI, a poet's best friend, so keen,
+Spitting out verses, bright and pristine.
+No writer's block, no frantic, late-night chase,
+Just perfect poems, at a rapid pace!
+Saving poem
+
+
+
+
 
 
